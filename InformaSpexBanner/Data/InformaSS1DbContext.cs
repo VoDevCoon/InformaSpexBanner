@@ -7,7 +7,7 @@ namespace InformaSpexBanner.Data
 	{
 		public InformaSS1DbContext(DbContextOptions<InformaSS1DbContext> options) : base(options)
 		{
-			Database.Migrate();
+			//Database.Migrate();
 		}
 
 		public DbSet<Exhibition> Exhibitions { get; set; }

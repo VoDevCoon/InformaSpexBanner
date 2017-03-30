@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace InformaSpexBanner
 {
@@ -11,14 +12,19 @@ namespace InformaSpexBanner
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
+			var config = new ConfigurationBuilder()
+				.AddEnvironmentVariables(prefix: "ASPNETCORE_")
+				.Build();
 
-            host.Run();
+			var host = new WebHostBuilder()
+				.UseConfiguration(config)
+				.UseKestrel()
+				.UseContentRoot(Directory.GetCurrentDirectory())
+				.UseIISIntegration()
+				.UseStartup<Startup>()
+				.Build();
+
+			host.Run();
         }
     }
 }
