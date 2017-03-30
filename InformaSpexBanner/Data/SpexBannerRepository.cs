@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
@@ -32,6 +33,14 @@ namespace InformaSpexBanner.Data
 		public Banner GetBanner(int Id)
 		{
 			return _dbcontext.Banners.FirstOrDefault(b => b.Id == Id);
+		}
+
+		public Exhibition AddExhibition(Exhibition exhibition)
+		{
+			_dbcontext.Exhibitions.Add(exhibition);
+			_dbcontext.SaveChanges();
+
+			return exhibition;
 		}
 	}
 }

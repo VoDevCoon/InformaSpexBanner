@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using InformaSpexBanner.Entities;
 
 namespace InformaSpexBanner.Data
@@ -9,5 +9,6 @@ namespace InformaSpexBanner.Data
 		Exhibition GetExhibition(int Id);
 		IEnumerable<Banner> GetAllBanner(int exhibitionId);
 		Banner GetBanner(int Id);
+		Exhibition AddExhibition(Exhibition exhibition);
 	}
 }
