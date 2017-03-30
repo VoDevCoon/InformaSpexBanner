@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InformaSpexBanner.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,7 +31,11 @@ namespace InformaSpexBanner
         {
             // Add framework services.
             services.AddMvc();
-        }
+
+			services.AddScoped<ISpexBannerRepository, SpexBannerRepository>();
+
+			var dbConnectionString = Configuration["InfSS1ConnectionString"];
+			services.AddDbContext<InformaSS1DbContext>(options => options.UseSqlServer(dbConnectionString));
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

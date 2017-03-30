@@ -1,35 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using InformaSpexBanner.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InformaSpexBanner.Controllers
 {
-    public class HomeController : Controller
-    {
-        public IActionResult Index()
-        {
-            return View();
-        }
+	public class HomeController : Controller
+	{
+		ISpexBannerRepository _repository;
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+		public HomeController(ISpexBannerRepository repository)
+		{
+			_repository = repository;
+		}
 
-            return View();
-        }
+		public IActionResult Index()
+		{
+			var model = _repository.GetAllExhibition();
+			return View(model);
+		}
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
-        }
-    }
+		public IActionResult Error()
+		{
+			return View();
+		}
+	}
 }

@@ -1,10 +1,13 @@
-﻿using System;
-namespace InformaSpexBanner
+﻿using System.Collections.Generic;
+using InformaSpexBanner.Entities;
+
+namespace InformaSpexBanner.Data
 {
-	public class ISpexBannerRepository
+	public interface ISpexBannerRepository
 	{
-		public ISpexBannerRepository()
-		{
-		}
+		IEnumerable<Exhibition> GetAllExhibition();
+		Exhibition GetExhibition(int Id);
+		IEnumerable<Banner> GetAllBanner(int exhibitionId);
+		Banner GetBanner(int Id);
 	}
 }
