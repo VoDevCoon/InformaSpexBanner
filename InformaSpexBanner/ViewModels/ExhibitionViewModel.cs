@@ -1,14 +1,14 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using InformaSpexBanner.Entities;
 
 namespace InformaSpexBanner.ViewModels
 {
-	public class ExhibitionEditViewModel
+	public class ExhibitionViewModel
 	{
 		public int Id{ get; set; }
-		[Required]
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string WebUrl { get; set; }
+		public ICollection<Banner> Banners { get; set; }
 	}
 }

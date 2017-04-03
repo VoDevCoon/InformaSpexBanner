@@ -1,0 +1,31 @@
+@using InformaSpexBanner.ViewModels
+@model ExhibitionViewModel
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>Add new exhibition</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<label asp-for="Name"></label>
+		<div asp-for="Name"></div>
+		<label asp-for="Description"></label>
+		<div asp-for="Description"></div>
+		<label asp-for="WebUrl"></label>
+		<div asp-for="WebUrl"></div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-md-12">
+		@foreach(var banner in Model.Banners)
+		{
+			<div class="banner">
+				<span asp-for="@banner.Id"></span>
+				<span asp-for="@banner.Text"></span>
+			</div>
+		}
+	</div>
+</div>

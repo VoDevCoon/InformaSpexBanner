@@ -33,6 +33,19 @@ namespace InformaSpexBanner.Controllers
 
 			return View("Details", exhibition);
 		}
+
+		[HttpGet]
+		public IActionResult Details(int Id)
+		{
+			var model = _repo.GetExhibition(Id);
+
+			if(model!=null)
+			{
+				return View(model);
+			}
+
+			return NotFound();
+		}
 			
 	}
 }
