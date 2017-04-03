@@ -1,7 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
 using InformaSpexBanner.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InformaSpexBanner
@@ -27,16 +31,42 @@ namespace InformaSpexBanner
 		}
 
 		[HttpPost]
-		public IActionResult Create(BannerEditViewModel model)
+		public async Task<IActionResult> Create(BannerEditViewModel model)
 		{
-			var banner = new Banner();
-			banner.Name = model.Name;
-			banner.Text = model.Text;
-			banner.Image = model.Image;
-			banner.ExhibitionId = model.ExhibitionId;
+			if (ModelState.IsValid)
+			{
+				var banner = new Banner();
+				banner.Name = model.Name;
+				banner.Image = await ToImageData((model.Image));
+				banner.ExhibitionId = model.ExhibitionId;
 
-			banner = _repo.AddBanner(banner);
-			return RedirectToAction("Details", "Exhibition", banner.ExhibitionId);
+				banner.Text = new CustomText
+				{
+					FixedText = model.FixedText,
+					FontColorHex = model.FontColorHex,
+					FontSize = model.FontSize,
+					FontTypeFace = model.FontTypeFace,
+					PositionX = model.PositionX,
+					PositionY = model.PositionY
+				};
+
+				banner = _repo.AddBanner(banner);
+			}
+
+			return RedirectToAction("Details", "Exhibition", new { Id = model.ExhibitionId });
+
+		}
+
+
+		private async Task<byte[]> ToImageData(IFormFile file)
+		{
+			var stream = file.OpenReadStream();
+
+			using (var memoryStream = new MemoryStream())
+			{
+				await stream.CopyToAsync(memoryStream);
+				return memoryStream.ToArray();
+			}
 		}
 	}
 }

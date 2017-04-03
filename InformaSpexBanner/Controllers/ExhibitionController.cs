@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
 using InformaSpexBanner.ViewModels;
@@ -47,7 +48,23 @@ namespace InformaSpexBanner.Controllers
 				model.Name = exhibition.Name;
 				model.Description = exhibition.Description;
 				model.WebUrl = exhibition.WebUrl;
-				model.Banners = _repo.GetAllBanner(exhibition.Id);
+
+				var banners = _repo.GetAllBanner(exhibition.Id);
+
+				var bannerViewModels = new List<BannerViewModel>();
+				foreach (var banner in banners)
+				{
+					var bannerModel = new BannerViewModel();
+					bannerModel.Id = banner.Id;
+					bannerModel.Name = banner.Name;
+					bannerModel.ExhibitionId = banner.ExhibitionId;
+					bannerModel.Text = banner.Text;
+					bannerModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
+
+					bannerViewModels.Add(bannerModel);
+				}
+
+				model.Banners = bannerViewModels;
 
 				return View(model);
 			}

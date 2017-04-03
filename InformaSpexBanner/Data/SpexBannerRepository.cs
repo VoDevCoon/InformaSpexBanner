@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformaSpexBanner.Data
 {
@@ -27,12 +28,12 @@ namespace InformaSpexBanner.Data
 
 		public IEnumerable<Banner> GetAllBanner(int exhibitionId)
 		{
-			return _dbcontext.Banners.Where(b => b.ExhibitionId == exhibitionId);
+			return _dbcontext.Banners.Include(b => b.Text).Where(b => b.ExhibitionId == exhibitionId);
 		}
 
 		public Banner GetBanner(int Id)
 		{
-			return _dbcontext.Banners.FirstOrDefault(b => b.Id == Id);
+			return _dbcontext.Banners.Include(b=>b.Text).FirstOrDefault(b => b.Id == Id);
 		}
 
 		public Exhibition AddExhibition(Exhibition exhibition)
@@ -49,6 +50,11 @@ namespace InformaSpexBanner.Data
 			_dbcontext.SaveChanges();
 
 			return banner;
+		}
+
+		public CustomText GetBannerText(int Id)
+		{
+			return _dbcontext.CustomTexts.FirstOrDefault(ct => ct.Id == Id);
 		}
 	}
 }

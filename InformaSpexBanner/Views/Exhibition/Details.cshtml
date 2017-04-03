@@ -21,11 +21,13 @@
 		@foreach(var banner in Model.Banners)
 		{
 			<div class="banner">
-				<span asp-for="@banner.Id"></span>
-				<span asp-for="@banner.Text"></span>
+				<span>@banner.Id</span>
+				<span>@banner.Name</span>
+				<span>@banner.Text.FixedText</span>
+				<img src="@banner.ImageBase64String" />
 			</div>
 		}
 	</div>
 </div>
 
-<a asp-controller="Banner" asp-action="Create" asp-route-id="@Model.Id">Add banner</a>
+<a asp-controller="Banner" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-lg btn-default">Add banner</a>

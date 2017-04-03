@@ -11,5 +11,6 @@ namespace InformaSpexBanner.Data
 		Banner GetBanner(int Id);
 		Exhibition AddExhibition(Exhibition exhibition);
 		Banner AddBanner(Banner banner);
+		CustomText GetBannerText(int Id);
 	}
 }
