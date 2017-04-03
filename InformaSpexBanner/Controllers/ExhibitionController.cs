@@ -37,10 +37,18 @@ namespace InformaSpexBanner.Controllers
 		[HttpGet]
 		public IActionResult Details(int Id)
 		{
-			var model = _repo.GetExhibition(Id);
+			var exhibition = _repo.GetExhibition(Id);
 
-			if(model!=null)
+			if(exhibition!=null)
 			{
+
+				var model = new ExhibitionViewModel();
+				model.Id = exhibition.Id;
+				model.Name = exhibition.Name;
+				model.Description = exhibition.Description;
+				model.WebUrl = exhibition.WebUrl;
+				model.Banners = _repo.GetAllBanner(exhibition.Id);
+
 				return View(model);
 			}
 

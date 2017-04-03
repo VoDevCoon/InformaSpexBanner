@@ -3,17 +3,15 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h2>Add new exhibition</h2>
+		<h2>@Model.Name</h2>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<label asp-for="Name"></label>
-		<div asp-for="Name"></div>
 		<label asp-for="Description"></label>
-		<div asp-for="Description"></div>
+		<div>@Model.Description</div>
 		<label asp-for="WebUrl"></label>
-		<div asp-for="WebUrl"></div>
+		<div>@Model.WebUrl</div>
 	</div>
 </div>
 
@@ -29,3 +27,5 @@
 		}
 	</div>
 </div>
+
+<a asp-controller="Banner" asp-action="Create" asp-route-id="@Model.Id">Add banner</a>

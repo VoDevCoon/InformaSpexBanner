@@ -42,5 +42,13 @@ namespace InformaSpexBanner.Data
 
 			return exhibition;
 		}
+
+		public Banner AddBanner(Banner banner)
+		{
+			_dbcontext.Banners.Add(banner);
+			_dbcontext.SaveChanges();
+
+			return banner;
+		}
 	}
 }

@@ -1,0 +1,22 @@
+﻿@using InformaSpexBanner.ViewModels
+@model BannerEditViewModel
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>Add new banner for @Model.ExhibitionName</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form asp-controller="Exhibition" asp-action="Create" method="post">
+			<input type="hidden" asp-for="@Model.ExhibitionId" />
+			<label asp-for="Name"></label>
+			<input asp-for="Name"></input>
+			<label asp-for="Image"></label>
+			<input asp-for="Image"></div>
+			<label asp-for="@Model.Text.FixedText"></label>
+			<input asp-for="@Model.Text.FixedText"></input>
+			<button type="submit">Create</button>
+		</form>
+	</div>
+</div>
