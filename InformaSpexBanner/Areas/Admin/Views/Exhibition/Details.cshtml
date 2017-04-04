@@ -23,8 +23,8 @@
 			<div class="banner">
 				<span>@banner.Id</span>
 				<span>@banner.Name</span>
-				<span>@banner.Text.FixedText</span>
 				<img src="@banner.ImageBase64String" />
+				<a asp-controller="Banner" asp-action="Edit" class="btn btn-default" asp-route-id="@banner.Id">Edit</a>
 			</div>
 		}
 	</div>

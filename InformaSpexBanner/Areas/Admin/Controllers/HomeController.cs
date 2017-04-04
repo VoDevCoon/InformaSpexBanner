@@ -1,8 +1,9 @@
 ﻿using InformaSpexBanner.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InformaSpexBanner.Controllers
+namespace InformaSpexBanner.Admin.Controllers
 {
+	[Area("Admin")]
 	public class HomeController : Controller
 	{
 		ISpexBannerRepository _repository;
@@ -15,6 +16,7 @@ namespace InformaSpexBanner.Controllers
 		public IActionResult Index()
 		{
 			var model = _repository.GetAllExhibition();
+
 			return View(model);
 		}
 

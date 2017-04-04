@@ -3,24 +3,46 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h2>Add new banner for @Model.ExhibitionName</h2>
+		<h2>Add banner for @Model.ExhibitionName</h2>
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12">
 		<form asp-controller="Banner" asp-action="Create" method="post" enctype="multipart/form-data">
 			<input type="hidden" asp-for="@Model.ExhibitionId" />
+			<input type="hidden" asp-for="@Model.Id" />
 			<label asp-for="Name"></label>
 			<input asp-for="Name" />
 			<label asp-for="Image"></label>
 			<input asp-for="Image" />
+
+			<button type="submit">Save</button>
+				
+		</form>
+
+		<form asp-controller="Banner" asp-action="Customise" method="post">
+
+			<input type="hidden" asp-for="@Model.Id" />
+			<panel>
 			<label asp-for="FixedText"></label>
 			<input asp-for="FixedText" />
 			<input asp-for="PositionX" type="hidden" />
 			<input asp-for="PositionY" type="hidden" />
 			<input asp-for="FontSize" type="range" min="12" max="38" step="2" />
 			<input asp-for="FontColorHex" type="color" />
-			<button type="submit">Create</button>
+				</panel>
+			<button type="submit">Save</button>
 		</form>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+			@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
+			{
+			<div class="banner">
+				<img src="@Model.ImageBase64String" />
+			</div>
+			}
+	</div>	
 </div>

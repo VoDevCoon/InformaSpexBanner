@@ -66,6 +66,8 @@ namespace InformaSpexBanner.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Active");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");

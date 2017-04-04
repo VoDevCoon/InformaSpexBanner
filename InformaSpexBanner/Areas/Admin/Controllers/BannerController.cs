@@ -4,13 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
+using InformaSpexBanner.Extensions;
 using InformaSpexBanner.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InformaSpexBanner
+namespace InformaSpexBanner.Admin.Controllers
 {
-	[Route("Admin/[controller]")]
+	[Area("Admin")]
 	public class BannerController : Controller
 	{
 		ISpexBannerRepository _repo;
@@ -25,39 +26,57 @@ namespace InformaSpexBanner
 		{
 			var exhibition = _repo.GetExhibition(Id);
 
-			var model = new BannerEditViewModel();
-			model.ExhibitionId = exhibition.Id;
-			model.ExhibitionName = exhibition.Name;
-			return View(model);
+			var viewModel = new BannerEditViewModel();
+			viewModel.ExhibitionId = exhibition.Id;
+			viewModel.ExhibitionName = exhibition.Name;
+			return View(viewModel);
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Create(BannerEditViewModel model)
+		public async Task<IActionResult> Create(BannerEditViewModel viewModel)
 		{
 			if (ModelState.IsValid)
 			{
 				var banner = new Banner();
-				banner.Name = model.Name;
-				banner.Image = await ToImageData((model.Image));
-				banner.ExhibitionId = model.ExhibitionId;
+				banner.Name = viewModel.Name;
+				banner.Image = await ToImageData((viewModel.Image));
+				banner.ExhibitionId = viewModel.ExhibitionId;
 
-				banner.Text = new CustomText
+				//banner.Text = new CustomText
+				//{
+				//	FixedText = viewModel.FixedText,
+				//	FontColorHex = viewModel.FontColorHex,
+				//	FontSize = viewModel.FontSize,
+				//	FontTypeFace = viewModel.FontTypeFace,
+				//	PositionX = viewModel.PositionX,
+				//	PositionY = viewModel.PositionY
+				//};
+
+				if (_repo.BannerExists(viewModel.Id))
 				{
-					FixedText = model.FixedText,
-					FontColorHex = model.FontColorHex,
-					FontSize = model.FontSize,
-					FontTypeFace = model.FontTypeFace,
-					PositionX = model.PositionX,
-					PositionY = model.PositionY
-				};
+					banner = _repo.UpdateBanner(banner);
+				}
+				else
+				{
+					banner = _repo.AddBanner(banner);
+				}
+				    
+				viewModel.Id = banner.Id;
+				viewModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
 
-				banner = _repo.AddBanner(banner);
+				return View(viewModel);
 			}
 
-			return RedirectToAction("Details", "Exhibition", new { Id = model.ExhibitionId });
+			return RedirectToAction("Details", "Exhibition", new { Id = viewModel.ExhibitionId });
 
 		}
 
+		[HttpGet]
+		public IActionResult Edit(int Id)
+		{
+			var banner = _repo.GetBanner(Id);
+			return View(banner.ToEditViewModel());
+		}
 
 		private async Task<byte[]> ToImageData(IFormFile file)
 		{
