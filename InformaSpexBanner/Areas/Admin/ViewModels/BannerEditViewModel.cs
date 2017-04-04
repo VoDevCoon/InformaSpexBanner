@@ -12,9 +12,6 @@ namespace InformaSpexBanner.ViewModels
 		public IFormFile Image { get; set; }
 		public string ExhibitionName { get; set; }
 
-		public int Id { get; set; }
-		public string ImageBase64String { get; set; }
-
 		public string FixedText { get; set; }
 		public int FontSize { get; set; }
 		public string FontColorHex { get; set; }

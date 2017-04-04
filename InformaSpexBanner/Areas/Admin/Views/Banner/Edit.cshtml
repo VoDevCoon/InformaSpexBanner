@@ -1,0 +1,35 @@
+﻿@using InformaSpexBanner.ViewModels
+@model BannerEditViewModel
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>@Model.Name</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<form asp-controller="Banner" asp-action="Create" method="post" enctype="multipart/form-data">
+			<input type="hidden" asp-for="@Model.ExhibitionId" />
+			<input type="hidden" asp-for="@Model.Id" />
+			<label asp-for="Name"></label>
+			<input asp-for="Name"></input>
+			<label>Change Image</label>
+			<input asp-for="Image" />
+			
+			@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
+			{
+			<div class="banner">
+				<img src="@Model.ImageBase64String" />
+			</div>
+			}
+			
+			<label asp-for="FixedText"></label>
+			<input asp-for="FixedText" />
+			<input asp-for="PositionX" type="hidden" />
+			<input asp-for="PositionY" type="hidden" />
+			<input asp-for="FontSize" type="range" min="12" max="38" step="2" />
+			<input asp-for="FontColorHex" type="color" />
+			<button type="submit">Save</button>
+		</form>
+	</div>
+</div>

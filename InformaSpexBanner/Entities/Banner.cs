@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using InformaSpexBanner.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InformaSpexBanner.Entities
 {

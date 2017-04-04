@@ -18,12 +18,12 @@ namespace InformaSpexBanner.Data
 
 		public IEnumerable<Exhibition> GetAllExhibition()
 		{
-			return _dbcontext.Exhibitions;
+			return _dbcontext.Exhibitions.Include(e => e.Banners).ThenInclude(b => b.Text);
 		}
 
 		public Exhibition GetExhibition(int Id)
 		{
-			return _dbcontext.Exhibitions.FirstOrDefault(e => e.Id == Id);
+			return _dbcontext.Exhibitions.Include(e=>e.Banners).ThenInclude(b=>b.Text).FirstOrDefault(e => e.Id == Id);
 		}
 
 		public IEnumerable<Banner> GetAllBanner(int exhibitionId)
@@ -55,6 +55,18 @@ namespace InformaSpexBanner.Data
 		public CustomText GetBannerText(int Id)
 		{
 			return _dbcontext.CustomTexts.FirstOrDefault(ct => ct.Id == Id);
+		}
+
+		public bool BannerExists(int id)
+		{
+			return _dbcontext.Banners.Find(id) != null;
+		}
+
+		public Banner UpdateBanner(Banner banner)
+		{
+			_dbcontext.Banners.Update(banner);
+
+			return banner;
 		}
 	}
 }
