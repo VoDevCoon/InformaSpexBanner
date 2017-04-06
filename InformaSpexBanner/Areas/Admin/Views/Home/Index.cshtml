@@ -9,7 +9,20 @@
     <div class="col-md-3">
     	@foreach (var exhibition in Model)
 		{
-			<div>@exhibition.Name <a asp-controller="Exhibition" asp-action="Details" asp-route-Id="@exhibition.Id">View</a></div>
+		<div>@exhibition.Name 
+			<a asp-controller="Exhibition" asp-action="Details" asp-route-Id="@exhibition.Id">View</a>
+
+			@{
+				var btnText = "Enable";
+				var btnClass = "success";
+				if(@exhibition.Active)
+				{
+					btnText = "Disable";
+					btnClass = "danger";
+				}
+			}
+			<a asp-controller="Exhibition" asp-action="ChangeStatus" class="btn btn-@btnClass" asp-route-id="@exhibition.Id">@btnText</a>
+		</div>
 		}
 	</div>
 </div>

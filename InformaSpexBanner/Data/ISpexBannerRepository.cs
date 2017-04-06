@@ -10,9 +10,10 @@ namespace InformaSpexBanner.Data
 		IEnumerable<Banner> GetAllBanner(int exhibitionId);
 		Banner GetBanner(int Id);
 		Exhibition AddExhibition(Exhibition exhibition);
+		Exhibition UpdateExhition(Exhibition exhibition);
 		Banner AddBanner(Banner banner);
 		CustomText GetBannerText(int Id);
 		bool BannerExists(int id);
 		Banner UpdateBanner(Banner banner);
-	}
+}
 }

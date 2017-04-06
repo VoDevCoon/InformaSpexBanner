@@ -25,6 +25,7 @@
 				<span>@banner.Name</span>
 				<img src="@banner.ImageBase64String" />
 				<a asp-controller="Banner" asp-action="Edit" class="btn btn-default" asp-route-id="@banner.Id">Edit</a>
+				<a asp-controller="Banner" asp-action="Delete" class="btn btn-danger" asp-route-id="@banner.Id">Remove</a>
 			</div>
 		}
 	</div>

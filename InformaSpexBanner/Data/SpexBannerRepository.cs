@@ -31,11 +31,6 @@ namespace InformaSpexBanner.Data
 			return _dbcontext.Banners.Include(b => b.Text).Where(b => b.ExhibitionId == exhibitionId);
 		}
 
-		public Banner GetBanner(int Id)
-		{
-			return _dbcontext.Banners.Include(b=>b.Text).FirstOrDefault(b => b.Id == Id);
-		}
-
 		public Exhibition AddExhibition(Exhibition exhibition)
 		{
 			_dbcontext.Exhibitions.Add(exhibition);
@@ -44,12 +39,17 @@ namespace InformaSpexBanner.Data
 			return exhibition;
 		}
 
-		public Banner AddBanner(Banner banner)
+		public Exhibition UpdateExhition(Exhibition exhibition)
 		{
-			_dbcontext.Banners.Add(banner);
+			_dbcontext.Exhibitions.Update(exhibition);
 			_dbcontext.SaveChanges();
 
-			return banner;
+			return exhibition;
+		}
+
+		public Banner GetBanner(int Id)
+		{
+			return _dbcontext.Banners.Include(b => b.Text).FirstOrDefault(b => b.Id == Id);
 		}
 
 		public CustomText GetBannerText(int Id)
@@ -60,6 +60,14 @@ namespace InformaSpexBanner.Data
 		public bool BannerExists(int id)
 		{
 			return _dbcontext.Banners.Find(id) != null;
+		}
+
+		public Banner AddBanner(Banner banner)
+		{
+			_dbcontext.Banners.Add(banner);
+			_dbcontext.SaveChanges();
+
+			return banner;
 		}
 
 		public Banner UpdateBanner(Banner banner)

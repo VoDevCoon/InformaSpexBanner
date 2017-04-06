@@ -50,7 +50,16 @@ namespace InformaSpexBanner.Admin.Controllers
 			return NotFound();
 		}
 
+		[HttpGet]
+		public IActionResult ChangeStatus(int Id)
+		{
+			var exhibition = _repo.GetExhibition(Id);
+			exhibition.Active = !exhibition.Active;
 
+			_repo.UpdateExhition(exhibition);
+
+			return RedirectToAction("Index", "Home", null);
+		}
 			
 	}
 }
