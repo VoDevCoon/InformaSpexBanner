@@ -25,11 +25,11 @@
 			<input type="hidden" asp-for="@Model.Id" />
 			<panel>
 			<label asp-for="FixedText"></label>
-			<input asp-for="FixedText" />
-			<input asp-for="PositionX" type="hidden" />
-			<input asp-for="PositionY" type="hidden" />
-			<input asp-for="FontSize" type="range" min="12" max="38" step="2" />
-			<input asp-for="FontColorHex" type="color" />
+			<input id="ctextInput" asp-for="FixedText" />
+			<input id="posxInput" asp-for="PositionX" type="hidden" />
+			<input id="posyInput" asp-for="PositionY" type="hidden" />
+			<input id="fsizeInput" asp-for="FontSize" type="range" min="12" max="38" step="2" />
+			<input id="fcolorInput" asp-for="FontColorHex" type="color" />
 				</panel>
 			<button type="submit">Save</button>
 		</form>
