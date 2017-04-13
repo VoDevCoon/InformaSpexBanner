@@ -1,0 +1,16 @@
+﻿@using InformaSpexBanner.ViewModels
+@model BannerEditViewModel
+
+<div class="row">
+	<div class="col-md-12">
+		<h2>Add banner for @Model.ExhibitionName</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="banner">
+				<img src="@Model.ImageBase64String" />
+				<span id="ctext"></span>
+			</div>
+	</div>
+</div>

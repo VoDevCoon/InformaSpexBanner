@@ -22,14 +22,7 @@ namespace InformaSpexBanner.Extensions
 			{
 				foreach (var banner in exhibition.Banners)
 				{
-					var bannerModel = new BannerViewModel();
-					bannerModel.Id = banner.Id;
-					bannerModel.Name = banner.Name;
-					bannerModel.ExhibitionId = banner.ExhibitionId;
-					bannerModel.Text = banner.Text;
-					bannerModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
-
-					bannerViewModels.Add(bannerModel);
+					bannerViewModels.Add(banner.ToViewModel());
 				}
 			}
 
@@ -56,5 +49,18 @@ namespace InformaSpexBanner.Extensions
 
 			return viewModel;
 		}
+
+		public static BannerViewModel ToViewModel(this Banner banner)
+		{
+			var viewModel = new BannerViewModel();
+			viewModel.Id = banner.Id;
+			viewModel.Name = banner.Name;
+			viewModel.ExhibitionId = banner.ExhibitionId;
+			viewModel.Text = banner.Text;
+			viewModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
+
+			return viewModel;
+		}
 	}
 }
+	
