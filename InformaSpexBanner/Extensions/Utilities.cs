@@ -9,7 +9,7 @@ namespace InformaSpexBanner.Extensions
 {
 	public static class Utilities
 	{
-		public static void GetSpexImage(this Banner banner, string spexText)
+		public static void GetSpexImage(this Banner banner, string spexText="test")
 		{
 
 			using (var ms = new MemoryStream(banner.Image))

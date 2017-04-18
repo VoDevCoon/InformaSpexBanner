@@ -21,6 +21,7 @@ namespace InformaSpexBanner.Extensions
 			{
 				foreach (var banner in exhibition.Banners)
 				{
+					banner.GetSpexImage();
 					bannerViewModels.Add(banner.ToViewModel());
 				}
 			}

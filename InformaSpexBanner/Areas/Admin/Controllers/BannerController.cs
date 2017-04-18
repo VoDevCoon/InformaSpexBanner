@@ -110,6 +110,8 @@ namespace InformaSpexBanner.Admin.Controllers
 				return NotFound();
 			}
 
+			banner.GetSpexImage();
+
 			return View(banner.ToViewModel());
 		}
 
@@ -121,7 +123,7 @@ namespace InformaSpexBanner.Admin.Controllers
 				_repo.DeleteBanner(Id);
 			}
 
-			return RedirectToAction("Exhibition", new { Id = ExhibitionId });
+			return RedirectToAction("Details","Exhibition", new { Id = ExhibitionId });
 		}
 
 		private async Task<byte[]> ToImageData(IFormFile file)

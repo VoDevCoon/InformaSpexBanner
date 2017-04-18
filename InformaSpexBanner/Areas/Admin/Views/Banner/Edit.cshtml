@@ -1,18 +1,12 @@
 ﻿@using InformaSpexBanner.ViewModels
 @model BannerEditViewModel
 
-<div class="row">
-	<div class="col-md-12">
-		<h2>@Model.Name</h2>
-	</div>
+<div class="page-header">
+	<h2>Customise @Model.Name</h2>
 </div>
-<div class="row">
-	<div class="col-md-12">
 		<form asp-controller="Banner" asp-action="Edit" method="post" enctype="multipart/form-data">
 			<input type="hidden" asp-for="@Model.ExhibitionId" />
 			<input type="hidden" asp-for="@Model.Id" />
-			<label asp-for="Name"></label>
-			<input asp-for="Name"></input>
 			
 			@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
 			{
@@ -31,11 +25,9 @@
 			<input id="fcolorInput" asp-for="FontColorHex" type="color" />
 			<button type="submit">Save</button>
 		</form>
-	</div>
-</div>
 
 <style type="text/css">
-	.banner{position:relative;}
+.banner{position:relative;}
 #ctext{
 	position:absolute;
 	left:0;
