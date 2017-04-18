@@ -73,8 +73,17 @@ namespace InformaSpexBanner.Data
 		public Banner UpdateBanner(Banner banner)
 		{
 			_dbcontext.Banners.Update(banner);
+			_dbcontext.SaveChanges();
 
 			return banner;
+		}
+
+		public void DeleteBanner(int Id)
+		{
+			var banner = _dbcontext.Banners.SingleOrDefault(b => b.Id == Id);
+			_dbcontext.Banners.Remove(banner);
+			_dbcontext.SaveChanges();
+
 		}
 	}
 }

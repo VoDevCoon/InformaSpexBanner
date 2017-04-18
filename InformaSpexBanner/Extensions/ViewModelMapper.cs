@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using InformaSpexBanner.Data;
 using InformaSpexBanner.Entities;
 using InformaSpexBanner.ViewModels;
 
@@ -44,6 +43,9 @@ namespace InformaSpexBanner.Extensions
 				viewModel.FixedText = banner.Text.FixedText;
 				viewModel.FontColorHex = banner.Text.FontColorHex;
 				viewModel.FontSize = banner.Text.FontSize;
+				viewModel.FontTypeFace = banner.Text.FontTypeFace;
+				viewModel.PositionX = banner.Text.PositionX;
+				viewModel.PositionY = banner.Text.PositionY;
 				viewModel.FontTypeFace = banner.Text.FontTypeFace;
 			}
 

@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		
+		<h2>Are you sure to delete @Model.Name</h2>
 	</div>
 </div>
 <div class="row">
@@ -11,6 +11,11 @@
 		<div class="banner">
 				<img src="@Model.ImageBase64String" />
 				<span id="ctext"></span>
-			</div>
+		</div>
+		<form asp-action="Delete" asp-controller="Banner">
+			<input type="hidden" asp-for="@Model.Id">
+			<input type="hidden" asp-for="@Model.ExhibitionId">
+			<button class="btn btn-primary">Delete</button>
+		</form>
 	</div>
 </div>

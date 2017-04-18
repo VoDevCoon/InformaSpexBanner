@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using InformaSpexBanner.Entities;
 
 namespace InformaSpexBanner.Data
@@ -13,7 +13,8 @@ namespace InformaSpexBanner.Data
 		Exhibition UpdateExhition(Exhibition exhibition);
 		Banner AddBanner(Banner banner);
 		CustomText GetBannerText(int Id);
-		bool BannerExists(int id);
+		bool BannerExists(int Id);
 		Banner UpdateBanner(Banner banner);
+		void DeleteBanner(int Id);
 }
 }

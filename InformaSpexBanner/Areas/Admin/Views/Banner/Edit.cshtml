@@ -8,13 +8,11 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<form asp-controller="Banner" asp-action="Create" method="post" enctype="multipart/form-data">
+		<form asp-controller="Banner" asp-action="Edit" method="post" enctype="multipart/form-data">
 			<input type="hidden" asp-for="@Model.ExhibitionId" />
 			<input type="hidden" asp-for="@Model.Id" />
 			<label asp-for="Name"></label>
 			<input asp-for="Name"></input>
-			<label>Change Image</label>
-			<input asp-for="Image" />
 			
 			@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
 			{
@@ -26,6 +24,7 @@
 			
 			<label asp-for="FixedText"></label>
 			<input id="ctextInput" asp-for="FixedText" />
+			<select id="fontTypeInput" asp-for="FontTypeFace" asp-items="@Model.FontList"></select>
 			<input id="posxInput" asp-for="PositionX" type="hidden" />
 			<input id="posyInput" asp-for="PositionY" type="hidden" />
 			<input id="fsizeInput" asp-for="FontSize" type="range" min="12" max="38" step="2" />

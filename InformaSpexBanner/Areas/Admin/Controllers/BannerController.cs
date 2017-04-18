@@ -41,14 +41,15 @@ namespace InformaSpexBanner.Admin.Controllers
 				banner.Name = viewModel.Name;
 				banner.Image = await ToImageData((viewModel.Image));
 				banner.ExhibitionId = viewModel.ExhibitionId;
-
+				banner.Text = new CustomText();
 
 				banner = _repo.AddBanner(banner);
-				    
-				viewModel.Id = banner.Id;
-				viewModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
 
-				return View("Edit", viewModel);
+				    
+				//viewModel.Id = banner.Id;
+				//viewModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
+
+				return RedirectToAction("Edit", new { Id = banner.Id });
 			}
 
 			return View(viewModel);
@@ -64,41 +65,63 @@ namespace InformaSpexBanner.Admin.Controllers
 
 
 		[HttpPost]
-		public async Task<IActionResult> Eidt(BannerEditViewModel viewModel)
+		public IActionResult Edit(BannerEditViewModel viewModel)
 		{
 			if (ModelState.IsValid)
 			{
 				var banner = _repo.GetBanner(viewModel.Id);
 				banner.Name = viewModel.Name;
-				banner.Image = await ToImageData((viewModel.Image));
 				banner.ExhibitionId = viewModel.ExhibitionId;
 
-				banner.Text = new CustomText
-				{
-					FixedText = viewModel.FixedText,
-					FontColorHex = viewModel.FontColorHex,
-					FontSize = viewModel.FontSize,
-					FontTypeFace = viewModel.FontTypeFace,
-					PositionX = viewModel.PositionX,
-					PositionY = viewModel.PositionY
-				};
+
+				banner.Text.FixedText = viewModel.FixedText;
+				banner.Text.FontColorHex = viewModel.FontColorHex;
+				banner.Text.FontSize = viewModel.FontSize;
+				banner.Text.FontTypeFace = viewModel.FontTypeFace;
+				banner.Text.PositionX = viewModel.PositionX;
+				banner.Text.PositionY = viewModel.PositionY;
+			
 
 				banner = _repo.UpdateBanner(banner);
 
-				return RedirectToAction("Detail", new { Id = banner.Id });
+				return RedirectToAction("Details", new { Id = banner.Id });
 			}
 
 			return View(viewModel);
 		}
 
 		[HttpGet]
-		public IActionResult Details(int Id)
+		public IActionResult Details(int Id, string spexText="test")
 		{
 			var banner = _repo.GetBanner((Id));
 
-			banner.GetSpexImage(string spexText);
+			banner.GetSpexImage(spexText);
 
 			return View(banner.ToViewModel());
+		}
+
+		[HttpGet]
+		public IActionResult Delete(int Id)
+		{
+			var banner = _repo.GetBanner(Id);
+
+			if(banner==null)
+			{
+				return NotFound();
+			}
+
+			return View(banner.ToViewModel());
+		}
+
+		[HttpPost]
+		public IActionResult Delete(int Id, int ExhibitionId)
+		{
+			if(_repo.BannerExists(Id))
+			{
+				_repo.DeleteBanner(Id);
+			}
+
+			return RedirectToAction("Exhibition", new { Id = ExhibitionId });
 		}
 
 		private async Task<byte[]> ToImageData(IFormFile file)
