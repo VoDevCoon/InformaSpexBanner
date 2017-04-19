@@ -45,10 +45,6 @@ namespace InformaSpexBanner.Admin.Controllers
 
 				banner = _repo.AddBanner(banner);
 
-				    
-				//viewModel.Id = banner.Id;
-				//viewModel.ImageBase64String = String.Format("data:image;base64,{0}", Convert.ToBase64String(banner.Image));
-
 				return RedirectToAction("Edit", new { Id = banner.Id });
 			}
 
@@ -91,7 +87,7 @@ namespace InformaSpexBanner.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Details(int Id, string spexText="test")
+		public IActionResult Details(int Id, string spexText="XYZ")
 		{
 			var banner = _repo.GetBanner((Id));
 

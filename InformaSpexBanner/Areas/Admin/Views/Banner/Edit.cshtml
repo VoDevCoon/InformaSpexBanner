@@ -4,30 +4,54 @@
 <div class="page-header">
 	<h2>Customise @Model.Name</h2>
 </div>
-		<form asp-controller="Banner" asp-action="Edit" method="post" enctype="multipart/form-data">
-			<input type="hidden" asp-for="@Model.ExhibitionId" />
-			<input type="hidden" asp-for="@Model.Id" />
-			
-			@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
-			{
-			<div class="banner">
-				<img src="@Model.ImageBase64String" />
-				<span id="ctext"></span>
+<form asp-controller="Banner" asp-action="Edit" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<input type="hidden" asp-for="@Model.ExhibitionId" />
+	<input type="hidden" asp-for="@Model.Id" />
+	<input type="hidden" asp-for="@Model.Name" />
+	<input id="posxInput" asp-for="PositionX" type="hidden" />
+	<input id="posyInput" asp-for="PositionY" type="hidden" />
+	<div class="panel panel-primary">
+		<div class="panel-heading">Adjust Text</div>
+		<div class="panel-body">
+			<div class="form-group">
+				<label asp-for="FixedText" class="col-sm-4 control-label"></label>
+				<div class="col-sm-8"><input id="ctextInput" asp-for="FixedText" class="form-control" /></div>
 			</div>
-			}
+			<div class="form-group">
+				<label asp-for="FontTypeFace" class="col-sm-4 control-label"></label>
+				<div class="col-sm-8"><select id="fontTypeInput" asp-for="FontTypeFace" asp-items="@Model.FontList"></select></div>
+			</div>
+			<div class="form-group">
+				<label asp-for="FontColorHex" class="col-sm-4 control-label"></label>
+				<div class="col-sm-8"><input id="fcolorInput" asp-for="FontColorHex" type="color" /></div>
+			</div>
+			<div class="form-group">
+				<label asp-for="FontSize" class="col-sm-4 control-label"></label>
+				<div class="col-sm-8"><input id="fsizeInput" asp-for="FontSize" type="range" min="12" max="38" step="2" /></div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-8"><button class="btn btn-primary" type="submit">Save</button></div>
+			</div>
+		</div>
+	</div>
+</form>
+@if(!String.IsNullOrEmpty(@Model.ImageBase64String))
+{
+<div class="banner">
+	<img id="bimage" src="@Model.ImageBase64String" />
+	<span id="ctext"></span>
+</div>
+}
 			
-			<label asp-for="FixedText"></label>
-			<input id="ctextInput" asp-for="FixedText" />
-			<select id="fontTypeInput" asp-for="FontTypeFace" asp-items="@Model.FontList"></select>
-			<input id="posxInput" asp-for="PositionX" type="hidden" />
-			<input id="posyInput" asp-for="PositionY" type="hidden" />
-			<input id="fsizeInput" asp-for="FontSize" type="range" min="12" max="38" step="2" />
-			<input id="fcolorInput" asp-for="FontColorHex" type="color" />
-			<button type="submit">Save</button>
-		</form>
+
+
+
+
+
+
 
 <style type="text/css">
-.banner{position:relative;}
+.banner{position:relative; text-align:center;}
 #ctext{
 	position:absolute;
 	left:0;
@@ -35,5 +59,6 @@
 	display:block;
 	background:rgba(150,150,255,0.3);
 	padding:2px;
+	letter-spacing:.085em;
 	}
 </style>
