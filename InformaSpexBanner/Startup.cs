@@ -35,6 +35,7 @@ namespace InformaSpexBanner
 			services.AddScoped<ISpexBannerRepository, SpexBannerRepository>();
 
 			var dbConnectionString = Configuration["InfSS1ConnectionString"];
+			Console.WriteLine(dbConnectionString);
 			services.AddDbContext<InformaSS1DbContext>(options => options.UseSqlServer(dbConnectionString));
 		}
 
