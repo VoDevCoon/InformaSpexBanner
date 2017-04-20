@@ -29,13 +29,20 @@ namespace InformaSpexBanner.ViewModels
 		private List<SelectListItem> GetInstalledFontList()
 		{
 			var fontList = new List<SelectListItem>();
-			InstalledFontCollection fonts = new InstalledFontCollection();
-			var fontFamilies = fonts.Families;
+            //InstalledFontCollection fonts = new InstalledFontCollection();
+            //var fontFamilies = fonts.Families;
 
-			foreach (var font in fontFamilies)
-			{
-				fontList.Add(new SelectListItem { Text = font.Name, Value = font.Name });
-			}
+            //foreach (var font in fontFamilies)
+            //{
+            //	fontList.Add(new SelectListItem { Text = font.Name, Value = font.Name });
+            //}
+            fontList.Add(new SelectListItem { Text = "Arial", Value = "Arial" });
+            fontList.Add(new SelectListItem { Text = "Arial Black", Value = "Arial Black" });
+            fontList.Add(new SelectListItem { Text = "Century Gothic", Value = "Century Gothic" });
+			fontList.Add(new SelectListItem { Text = "Courier New", Value = "Courier New" });
+            fontList.Add(new SelectListItem { Text = "DejaVu Sans Mono", Value = "DejaVu Sans Mono" });
+            fontList.Add(new SelectListItem { Text = "Lucida Sans Unicode", Value = "Lucida Sans Unicode" });
+            fontList.Add(new SelectListItem { Text = "Verdana", Value = "Verdana" });
 
 			return fontList;
 		}

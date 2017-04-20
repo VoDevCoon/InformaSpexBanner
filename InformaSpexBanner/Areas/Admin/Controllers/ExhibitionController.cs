@@ -31,6 +31,7 @@ namespace InformaSpexBanner.Admin.Controllers
 			exhibition.Name = model.Name;
 			exhibition.Description = model.Description;
 			exhibition.WebUrl = model.WebUrl;
+            exhibition.Active = model.Active;
 
 			exhibition = _repo.AddExhibition(exhibition);
 

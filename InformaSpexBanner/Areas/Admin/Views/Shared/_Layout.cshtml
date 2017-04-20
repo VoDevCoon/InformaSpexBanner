@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - InformaSpexBanner</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.min.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -27,9 +27,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="admin" asp-controller="Home" asp-action="Index" class="navbar-brand">
-		    <img src="" alt="Informa" />	
-		</a>
-		<p class="navbar-text">Informa Spex Banner Tool</p>				
+		            <img class="img-responsive" style="height:20px;" src="https://s3.amazonaws.com/images.informa.com.au/styles/Informa-logo-dark-blue.png" alt="Informa" />	
+		        </a>	
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -37,6 +36,8 @@
                     <li><a asp-area="admin" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="admin" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
+
+                <p class="pull-right text-primary navbar-text"><span class="glyphicon glyphicon-wrench"></span> Informa Spex Banner Tool</p>           
             </div>
         </div>
     </nav>
@@ -67,7 +68,7 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
-        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.4/jquery-ui.min.js"
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"
                 asp-fallback-src="~/lib/jquery-ui/jquery-ui.min.js"
                 crossorigin="anonymous">
         </script>

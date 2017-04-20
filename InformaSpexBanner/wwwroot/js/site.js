@@ -2,25 +2,28 @@
 $(document).ready(function(){
 /* Edit Banner View */
     //initaillise UI		
+  {
     $("#ctext").text($("#ctextInput").val());
     $("#ctext").css("font-size",$("#fsizeInput").val()+"px");
     $("#ctext").css('color', $("#fcolorInput").val());
     $("#ctext").css("font-family", $("#fontTypeInput").val());
 
     var imagePos = $("#bimage").position();
-    if(imagePos){if($("#posyInput").val()!=0||$("#posxInput").val()!=0){
+    if(imagePos){
+      if($("#posyInput").val()!=0||$("#posxInput").val()!=0){
     	//text position is previously set
     	var posy = +imagePos.top + +$("#posyInput").val();
     	var posx = +imagePos.left + +$("#posxInput").val();
-
-    	 console.log(posy + "|" +posx);
+        
     	$("#ctext").css({top: posy + "px", left: posx + "px"});
-    }
-    else {
+      }
+      else {
     	//first time setting the text position
     	$("#ctext").css({top: imagePos.top, left:imagePos.left});
+      } 
     }
-    }
+  }
+
 
     $("#ctext").draggable({
     	stop: function(){
@@ -52,8 +55,5 @@ $(document).ready(function(){
     $(".ibanner").each(function(){
     	var image = new Image();
     	image.src = $(this).find(".thumbnail").attr("src");
-    	$(this).find(".imgWidth").text("Width: "+image.width+"px");
-    	$(this).find(".imgHeight").text("Height: "+image.height+"px");
     });
-
   });
