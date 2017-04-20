@@ -55,5 +55,7 @@ $(document).ready(function(){
     $(".ibanner").each(function(){
     	var image = new Image();
     	image.src = $(this).find(".thumbnail").attr("src");
+    	$(this).find(".imgWidth").text("Width: "+image.width+"px");
+    	$(this).find(".imgHeight").text("Height: "+image.height+"px");
     });
   });
