@@ -17,23 +17,48 @@ textarea {
     max-width: 280px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+/* Customised Spacing */
+.mt-s{
+    margin-top:1rem;
+}
+.mt-m {
+    margin-top:1.5rem;
+}
+.mt-l {
+    margin-top:2rem;
+}
+.mr-s {
+    margin-right: 1rem;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+.mr-m {
+    margin-right: 1.5rem;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+.mr-l {
+    margin-right: 2rem;
+}
+.mb-s {
+    margin-bottom: 1rem;
+}
+
+.mtb-m {
+    margin-bottom: 1.5rem;
+}
+
+.mb-l {
+    margin-bottom: 2rem;
+}
+.ml-s {
+    margin-left: 1rem;
+}
+
+.ml-m {
+    margin-left: 1.5rem;
+}
+
+.ml-l {
+    margin-left: 2rem;
 }
 
 /* Page specific styles */
@@ -52,7 +77,10 @@ textarea {
     padding: 2px;
     letter-spacing: .085em;
 }
-
+/*- Admin Home -*/
+.exhibition {
+    padding: 20px 5px;
+}
 /*- Admin Exhibition -*/
 .ibanner {
     position: relative;
@@ -64,6 +92,7 @@ textarea {
     margin: 10px 0;
     border: 1px solid #ccc;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    cursor:pointer;
 }
 
     .ibanner span {
@@ -71,24 +100,29 @@ textarea {
         margin-right: 10px;
     }
 
-.overlay {
-    padding-top: 60px;
-    z-index: 100;
-    opacity: 0;
-    font-size: 24px;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,255,0.3);
-    border-radius: 5px;
-    transition: 0.4s all ease;
-    -webkit-transition: 0.4s all ease;
-}
+	.ibanner .overlay {
+	    padding-top: 60px;
+	    z-index: -1;
+	    opacity: 0;
+	    font-size: 24px;
+	    text-align: center;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    background-color: rgba(0,0,255,0.3);
+	    border-radius: 5px;
+	    transition: 0.4s all ease;
+	    -webkit-transition: 0.4s all ease;
+	}
 
-.ibanner:hover .overlay {
-    opacity: 1;
-    font-size: 32px;
+	.ibanner:hover .overlay {
+	    opacity: 1;
+	    font-size: 32px;
+	}
+.modal img{
+    margin-top:10%;
+    margin-right:auto;
+    margin-left:auto;
 }   

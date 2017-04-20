@@ -9,9 +9,8 @@ using InformaSpexBanner.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InformaSpexBanner.Admin.Controllers
+namespace InformaSpexBanner.Controllers
 {
-	[Area("Admin")]
 	public class BannerController : Controller
 	{
 		ISpexBannerRepository _repo;

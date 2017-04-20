@@ -85,5 +85,13 @@ namespace InformaSpexBanner.Data
 			_dbcontext.SaveChanges();
 
 		}
+
+		public void DeleteExhibition(int Id, string name)
+		{
+			var exhibition = _dbcontext.Exhibitions.SingleOrDefault(e => e.Id == Id && e.Name == name);
+
+			_dbcontext.Exhibitions.Remove(exhibition);
+			_dbcontext.SaveChanges();
+		}
 	}
 }

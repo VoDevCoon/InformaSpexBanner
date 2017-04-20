@@ -2,7 +2,7 @@
 @model BannerEditViewModel
 
 <div class="page-header">
-	<h2>Customise @Model.Name</h2>
+	<h2>Customise @Model.Name <a asp-controller="Exhibition" asp-action="Details" class="btn btn-default btn-lg pull-right" asp-route-Id="@Model.ExhibitionId">&lt; Back to Exhibiton</a></h2>
 </div>
 <form asp-controller="Banner" asp-action="Edit" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<input type="hidden" asp-for="@Model.ExhibitionId" />
@@ -14,19 +14,19 @@
 		<div class="panel-heading">Adjust Text</div>
 		<div class="panel-body">
 			<div class="form-group">
-				<label asp-for="FixedText" class="col-sm-4 control-label"></label>
+				<label asp-for="FixedText" class="col-sm-4 control-label">Prefix Text</label>
 				<div class="col-sm-8"><input id="ctextInput" asp-for="FixedText" class="form-control" /></div>
 			</div>
 			<div class="form-group">
-				<label asp-for="FontTypeFace" class="col-sm-4 control-label"></label>
+				<label asp-for="FontTypeFace" class="col-sm-4 control-label">Font</label>
 				<div class="col-sm-8"><select id="fontTypeInput" asp-for="FontTypeFace" asp-items="@Model.FontList"></select></div>
 			</div>
 			<div class="form-group">
-				<label asp-for="FontColorHex" class="col-sm-4 control-label"></label>
+				<label asp-for="FontColorHex" class="col-sm-4 control-label">Text Color</label>
 				<div class="col-sm-8"><input id="fcolorInput" asp-for="FontColorHex" type="color" /></div>
 			</div>
 			<div class="form-group">
-				<label asp-for="FontSize" class="col-sm-4 control-label"></label>
+				<label asp-for="FontSize" class="col-sm-4 control-label">Font Size</label>
 				<div class="col-sm-8"><input id="fsizeInput" asp-for="FontSize" type="range" min="12" max="38" step="2" /></div>
 			</div>
 			<div class="form-group">

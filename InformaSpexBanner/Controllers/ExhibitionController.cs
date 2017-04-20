@@ -6,9 +6,8 @@ using InformaSpexBanner.Extensions;
 using InformaSpexBanner.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace InformaSpexBanner.Admin.Controllers
+namespace InformaSpexBanner.Controllers
 {
-	[Area("Admin")]
 	public class ExhibitionController : Controller
 	{
 		ISpexBannerRepository _repo;
@@ -30,8 +29,8 @@ namespace InformaSpexBanner.Admin.Controllers
 			var exhibition = new Exhibition();
 			exhibition.Name = model.Name;
 			exhibition.Description = model.Description;
-			//exhibition.WebUrl = ;
-            		exhibition.Active = model.Active;
+			exhibition.WebUrl = model.WebUrl;
+            exhibition.Active = model.Active;
 
 			exhibition = _repo.AddExhibition(exhibition);
 
@@ -45,13 +44,6 @@ namespace InformaSpexBanner.Admin.Controllers
 
 			if(exhibition!=null)
 			{
-				//generate embed url
-				var host = HttpContext.Request.Host;
-				var url = "http://"+host+"/?Id=" + exhibition.Id
-							   + "&exhibitionName=" + exhibition.Name.Replace("+", "%2b")
-									     + "&spexText=";
-				exhibition.WebUrl = url;
-
 				return View(exhibition.ToViewModel());
 			}
 

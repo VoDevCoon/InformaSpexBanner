@@ -4,52 +4,42 @@
 @{
     ViewData["Title"] = "Exhibitions";
 }
-<div class="jumbotron">
+<div class="jumbotron mt-s">
     <h2>Welcome to Informa Spex Banner Tool!</h2>
     <p>First time here? Follow the link below to find out how to use this tool to create customised spex banner that can be downloaded by your exhibitors.</p>
     <a class="btn btn-primary btn-lg">Learn more</a>
 </div>
 <div class="page-header">
-    <h2>Exhibitions <small>Click <em>Banners</em> to view the available banners for the specific exhibition</small></h2>
+    <h2>Exhibitions <a asp-controller="Exhibition" asp-action="Create" class="mt-m pull-right btn btn-default btn-lg">Add New Exhibition</a></h2>
+    <p><small>Click <em>Banners</em> to view the available banners for the specific exhibition</small></p>			
 </div>
-<div class="list-group">
+<div class="list-group mb-l">
 	@foreach (var exhibition in Model)
 	{
 	<div class="list-group-item"><div class="row exhibition">
-	    <div class="col-xs-4 col-md-8">
+	    <div class="col-xs-6 col-md-8">
 		<div>@exhibition.Name</div>
 	    </div>
-	    <div class="col-xs-4 col-md-2">
+	    <div class="col-xs-2 col-md-2">
 		<a class="btn btn-success" asp-controller="Exhibition" asp-action="Details" asp-route-Id="@exhibition.Id">Banners 
 		    <span class="badge">@exhibition.Banners.Count</span>
 		</a>
 	    </div>
-	    <div class="col-xs-4 col-md-2">
+	    <div class="col-xs-2 col-md-1">
 		@{
 			var btnText = "Enable";
 			var btnClass = "success";
 			if(@exhibition.Active)
 			{
 				btnText = "Disable";
-				btnClass = "danger";
+				btnClass = "warning";
 			}
 		}
 		<a asp-controller="Exhibition" asp-action="ChangeStatus" class="btn btn-@btnClass" asp-route-id="@exhibition.Id">@btnText</a>
 	    </div>
+	    <div class="col-xs-2 col-md-1">
+	        <a asp-controller="Exhibition" asp-action="Delete" class="btn btn-danger" asp-route-id="@exhibition.Id">Remove</a>
+  	    </div>
 	</div></div>
 	}
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<a asp-controller="Exhibition" asp-action="Create" class="btn btn-default btn-lg">Add New Exhibition</a>
-	</div>
-</div>
-
-<style type="text/css">
-
-/*- Admin Home -*/
-.exhibition {
-    padding:20px 5px;
-}
-
-</style>

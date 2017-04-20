@@ -33,13 +33,20 @@
     <Folder Include="Areas\Admin\Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Views\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Home\Contact.cshtml" />
     <Content Remove="Views\Home\About.cshtml" />
+    <Content Remove="Areas\Admin\Views\Shared\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="ViewModels\BannerViewModel %28copy%29.cs" />
     <Compile Remove="ViewModels\BannerDeleteViewModel.cs" />
+    <Compile Remove="Controllers\BannerController.cs" />
+    <Compile Remove="Controllers\ExhibitionController.cs" />
   </ItemGroup>
 </Project>

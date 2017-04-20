@@ -1,20 +1,14 @@
 ﻿@using InformaSpexBanner.ViewModels
 @model ExhibitionViewModel
 
+@{
+    ViewData["Title"] = "Informa Exhibitor Personalised Banner";
+}
 <div class="page-header">
-	<h2 id="exhibition-name">@Model.Name 
-<a asp-controller="Banner" asp-action="Create" asp-route-id="@Model.Id" class="pull-right mt-m btn btn-lg btn-default">Add new banner</a>
-</h2>
-	<p><small>Exhibition banners</small></p>
+    <h2>Download @Model.Name Banners</h2>
+    <p><small>Click each card to view the banner and click <strong>Download</strong> to save your personalised banner.</small></p>			
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<label asp-for="Description"></label>
-		<div>@Model.Description</div>
-		<label asp-for="WebUrl">Embed URL</label>
-		<div>@Model.WebUrl</div>
-	</div>
-</div>
+
 @{var r=0 ; var i=1;}
 <div class="row">
 	@foreach(var banner in Model.Banners)
@@ -28,8 +22,7 @@
 			<div class="overlay"><span class="align-middle glyphicon glyphicon-zoom-in"></span></div>
 			</div>
 			<div class="pull-right">
-				<a asp-controller="Banner" asp-action="Edit" class="btn btn-primary" asp-route-id="@banner.Id">Edit</a>
-				<a asp-controller="Banner" asp-action="Delete" class="btn btn-danger" asp-route-id="@banner.Id">Remove</a>
+				<a href="@banner.ImageBase64String" data-filename="#@banner.Id" class="btn btn-default" download="@banner.Name-informa.jpg">Download</a>
 			</div>
 		</div>
 

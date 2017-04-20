@@ -7,7 +7,7 @@ namespace InformaSpexBanner.Extensions
 {
 	public static class ViewModelMapper
 	{
-		public static ExhibitionViewModel ToViewModel(this Exhibition exhibition)
+		public static ExhibitionViewModel ToViewModel(this Exhibition exhibition, string spexText="XYZ")
 		{ 
 			var viewModel = new ExhibitionViewModel();
 			viewModel.Id = exhibition.Id;
@@ -21,7 +21,7 @@ namespace InformaSpexBanner.Extensions
 			{
 				foreach (var banner in exhibition.Banners)
 				{
-					banner.GetSpexImage();
+					banner.GetSpexImage(spexText);
 					bannerViewModels.Add(banner.ToViewModel());
 				}
 			}

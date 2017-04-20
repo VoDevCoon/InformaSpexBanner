@@ -16,5 +16,6 @@ namespace InformaSpexBanner.Data
 		bool BannerExists(int Id);
 		Banner UpdateBanner(Banner banner);
 		void DeleteBanner(int Id);
-}
+		void DeleteExhibition(int Id, string name);
+	}
 }
