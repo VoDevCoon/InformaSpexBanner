@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InformaSpexBanner.Data;
+using InformaSpexBanner.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,11 +32,12 @@ namespace InformaSpexBanner
 		{
 			// Add framework services.
 			services.AddMvc();
+            services.Configure<IpSecuritySettings>(Configuration.GetSection("AdminHash"));
 
 			services.AddScoped<ISpexBannerRepository, SpexBannerRepository>();
 
 			var dbConnectionString = Configuration["InfSS1ConnectionString"];
-			Console.WriteLine(dbConnectionString);
+			//Console.WriteLine(dbConnectionString);
 			services.AddDbContext<InformaSS1DbContext>(options => options.UseSqlServer(dbConnectionString));
 		}
 
@@ -54,6 +56,10 @@ namespace InformaSpexBanner
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+
+
+			app.UseMiddleware<IpRestrictionMiddleware>();
 
             app.UseStaticFiles();
 

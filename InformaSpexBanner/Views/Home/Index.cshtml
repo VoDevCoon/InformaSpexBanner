@@ -6,34 +6,24 @@
 }
 <div class="page-header">
     <h2>Download @Model.Name Banners</h2>
-    <p><small>Click each card to view the banner and click <strong>Download</strong> to save your personalised banner.</small></p>			
+    <p><small>Click <strong>Preview</strong> to view the banner and click <strong>Download</strong> to save your personalised banner.</small></p>			
 </div>
 
-@{var r=0 ; var i=1;}
-<div class="row">
-	@foreach(var banner in Model.Banners)
-	{
-		<div class="col-xs-12 col-md-4">
-			<div class="ibanner" data-toggle="modal" data-target="#@banner.Id">
-				<h4 class="text-center">@banner.Name</h4>
-				<div class="pull-right"><span class="imgWidth"></span>
-				<span class="imgHeight"></span></div>
-                
-			<div class="overlay"><span class="align-middle glyphicon glyphicon-zoom-in"></span></div>
-			</div>
-			<div class="pull-right">
-				<a href="@banner.ImageBase64String" data-filename="#@banner.Id" class="btn btn-default" download="@banner.Name-informa.jpg">Download</a>
-			</div>
+<div class="list-group mb-l">
+@foreach(var banner in Model.Banners)
+    {
+    
+	<div class="list-group-item">
+		<div class="row ilbanner">
+            <div class="col-xs-3 col-md-4">
+				<span class="imgWidth"></span></div>
+			<div class="col-xs-3 col-md-4">
+                <span class="imgHeight"></span></div>
+			<div class="col-xs-3 col-md-2"><a data-toggle="modal" data-target="#@banner.Id" class="preview btn btn-default">Preview</a></div>
+			<div class="col-xs-3 col-md-2"><a href="@banner.ImageBase64String" data-filename="#@banner.Id" class="btn btn-default" download="@banner.Name-informa.jpg">Download</a></div>
 		</div>
-
-		if(i%3==0)
-		{
-			r++;
-			@:</div><div class="row">
-		}
-		i++;      
+	</div>
 	}
-
 </div>
 
 @foreach(var banner in Model.Banners)

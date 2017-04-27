@@ -59,4 +59,14 @@ $(document).ready(function(){
     	$(this).find(".imgWidth").text("Width: "+image.width+"px");
     	$(this).find(".imgHeight").text("Height: "+image.height+"px");
     });
+
+/* Banner Download View */
+    $(".ilbanner").each(function(){
+        var modalId = $(this).find(".preview").attr("data-target");
+        var image = new Image();
+        image.src = $(modalId).find(".thumbnail").attr("src");
+
+        $(this).find(".imgWidth").text("Width: "+image.width+"px");
+        $(this).find(".imgHeight").text("Height: "+image.height+"px");
+    }); 
   });
